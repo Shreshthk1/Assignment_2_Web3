@@ -5,7 +5,7 @@ const movieController = require('../Controllers/movie_controller')
 router.route('/movies')
     .get(movieController.getAllMovies);
 
-router.route('/movies/limit/')
+router.route('/movies/limit/:num')
     .get(movieController.getLimitedMovies)
 
 router.route('/movies/')
