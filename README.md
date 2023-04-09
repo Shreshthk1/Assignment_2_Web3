@@ -47,7 +47,7 @@ https://catnip-silver-den.glitch.me/api/movies/title/:text
 Returns movies whose title contains (somewhere) the provided text. This search should be case insensitive.
 
 ```sh
-https://catnip-silver-den.glitch.me/api/movies/:name 
+https://catnip-silver-den.glitch.me/api/movies/genre/:name 
 ```
 Returns movies that have a genre name that matches the provided value. This should be case insensitive.
 
