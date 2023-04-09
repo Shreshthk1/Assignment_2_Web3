@@ -4,7 +4,7 @@ function ensureAuthenticated (req, resp, next) {
     if (req.isAuthenticated()) {
     return next();
     }
-    req.flash('info', 'Please log in to view resources');
+    req.flash('info', 'Incorrect Password, Please try again');
     resp.render('login', {message: req.flash('info')} );
 }
    

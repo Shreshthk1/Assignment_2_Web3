@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="./login.css">
 </head>
 <body>
+    <div>
+       <% if (message) { %>
+        <p id="msg2" class="help is-danger">
+        <%= message %>
+        </p>
+       <% } %> 
     <form action="/login" method="POST">
         <div>
             <label for="userName">Email</label>
@@ -17,5 +23,7 @@
         </div> 
         <button type="submit">Log In</button>
     </form>
+    </div>
+       
 </body>
 </html> 

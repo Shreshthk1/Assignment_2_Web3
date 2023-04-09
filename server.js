@@ -41,11 +41,11 @@ app.listen(process.env.PORT, () => {
 });
 
 //Login Route
-app.get('/', (req, res) => {
-    res.render('login.ejs');
+app.get('/', userController.ensureAuthenticated,(req, res) => {
+    res.render('login.ejs', {message: req.flash('error')});
 });
 app.get('/home', userController.ensureAuthenticated,(req, res) => {
-    res.render('home.ejs');
+    res.render('home.ejs', {message: req.flash('error')});
 });
 
 
