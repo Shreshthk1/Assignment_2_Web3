@@ -1,0 +1,57 @@
+body {
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #557495;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+  
+  nav {
+    float: right;
+    margin-top: 15px;
+    margin-right: 40px;
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  button {
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  button[type="submit"] {
+    background-color: #4285f4;
+    color: white;
+    
+    padding: 20px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 225px;
+    
+  }
+  
+  
+  .container {
+    margin-top: 100px;
+    text-align: center;
+  }
+  
