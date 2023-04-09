@@ -1,5 +1,6 @@
 const MovieModel = require("../Models/MovieModel")
 
+//Returns all movies
 const getMoviesFunc = (app, Movies) => {
     app.get("/api/movies" , (req, res) => {
         Movies.find()
@@ -17,7 +18,7 @@ const getMoviesFunc = (app, Movies) => {
     )
 }
 
-
+//Returns a specific range of movies  
 const getLimitedMovies = (app,Movies)=>{
     app.get("/api/movies/limit/:num",(req,res)=>{
         const num = req.params.num;
@@ -35,7 +36,7 @@ const getLimitedMovies = (app,Movies)=>{
 }
 
 
-
+//Returns a specific Movie given its ID
 const getSpecificMovie =  (app, Movies) => {
     app.get("/api/movies/:id", (req, res) => {
         let movieID = req.params.id;
@@ -50,6 +51,7 @@ const getSpecificMovie =  (app, Movies) => {
     })
 }
 
+//Returns a specific Movie given its TMDB ID
 const getTmdbMovie = (app,Movies) =>{
     app.get("/api/movies/tmdb/:id",(req,res)=>{
         let movieId = req.params.id;
@@ -64,6 +66,7 @@ const getTmdbMovie = (app,Movies) =>{
     })
 }
 
+//Returns a collection of movies within a user specified range of years
 const sortYear = (app,Movies) => {
     app.get("/api/movies/year/:min/:max",(req,res)=>{
         let minDate = `${req.params.min}-00-01`
@@ -91,6 +94,8 @@ const sortYear = (app,Movies) => {
 
 }
 
+
+//Sorts and Returns all movies whos' average rating fit in the user specified range 
 const sortRatings = (app, Movies) => {
     app.get("/api/movies/ratings/:min/:max",(req,res)=>{
         let minRatings = parseInt(req.params.min)
@@ -112,28 +117,31 @@ const sortRatings = (app, Movies) => {
     })
 }
 
+//Filters and returns all movies that may contain a user specified keyword
 const sortTitle = (app, Movies) => {
     app.get("/api/movies/title/:movieTitle", (req, res) => {
         let movieTitle = req.params.movieTitle;
-        Movies.find({title: {$regex: movieTitle}})
+        Movies.find({title: new RegExp(movieTitle, 'i')})
         .then(data => {
             if(data != null){
                 res.status(200).json(data);
             } else {
-                res.status(400).send({success:false,error:{message:"No Matching Title Found. Please Check Spelling and Case"}})
+                res.status(400).send({success:false,error:{message:"No Matching Title Found. Please Check Spelling"}})
             }
         })
     })
 }
+
+//Sorts and returns a list of movies of a specific user specified genre
 const sortGenre = (app, Movies) => {
     app.get("/api/movies/genre/:name", (req, res) => {
         let genreName = req.params.name;
-        Movies.find({"details.genres.name" : genreName })
+        Movies.find({"details.genres.name" : new RegExp(genreName, 'i')})
         .then(data => {
             if (data.length != 0) {
                 res.status(200).json(data)
             } else {
-                res.status(400).send({success:false,error:{message:"No Matching Genres Found. Please check spelling and Case"}})
+                res.status(400).send({success:false,error:{message:"No Matching Genres Found. Please check spelling"}})
             }
         })
     })

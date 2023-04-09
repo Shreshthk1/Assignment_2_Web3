@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); 
+
+//Mongo DB User Schema
 const UserSchema = new mongoose.Schema({
     id: Number,
     details:{
@@ -23,9 +25,9 @@ const UserSchema = new mongoose.Schema({
     favorites:[]
 })
 
+//makes sure the password provided is correct
 UserSchema.methods.isValidPassword = async function(formPassword) {
     const user = this;
-    console.log(user)
     const hash = user.password_bcrypt;
     const compare = await bcrypt.compare(formPassword, hash);
     return compare;

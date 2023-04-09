@@ -29,7 +29,6 @@ app.use(
  saveUninitialized: true
  })
 );
-
 app.use(flash()); 
 app.use(passport.initialize());
 app.use(passport.session()); 
@@ -41,9 +40,11 @@ app.listen(process.env.PORT, () => {
 });
 
 //Login Route
-app.get('/', userController.ensureAuthenticated,(req, res) => {
+app.get('/' ,(req, res) => {
     res.render('login.ejs', {message: req.flash('error')});
 });
+
+//Home Route (Will not work if not authenticated)
 app.get('/home', userController.ensureAuthenticated,(req, res) => {
     res.render('home.ejs', {message: req.flash('error')});
 });

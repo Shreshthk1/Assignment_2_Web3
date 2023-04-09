@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+//Creates and ensures connection with the MongoDB database
 const connect = () => { 
  const opt = {
  useUnifiedTopology: true,
